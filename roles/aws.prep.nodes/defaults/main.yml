@@ -1,0 +1,4 @@
+# file: roles/aws.prep.nodes/defaults/main.yml
+---
+#
+# foo: default

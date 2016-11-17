@@ -1,0 +1,5 @@
+# file: roles/aws.prep.nodes/tasks/main.yml
+---
+
+- include: rhel-subscription.yml
+- include: prep-nodes.yml

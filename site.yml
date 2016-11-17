@@ -1,0 +1,23 @@
+# file: site.yml
+---
+- name: Provision AWS Nodes with Terraform
+  hosts: local_target
+  vars:
+  roles:
+  - { role: aws.terraform, tags: ["terraform"] }
+
+
+- name: Install & Configure nodes default settings and packages
+  hosts: nodes
+  become: yes
+  roles:
+  - { role: aws.prep.nodes, tags: ["rhel"] }
+
+
+- name: Install OpenShift with Atomic Installer
+  remote_user: ec2-user
+  hosts: masters
+  tasks: []
+  roles:
+  - { role: aws.atomic.install, tags: ["atomic"] }
+

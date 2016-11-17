@@ -1,0 +1,49 @@
+# file: group_vars/atlanta
+#
+
+#####################################################
+# aws.infra.terraform 
+#####################################################
+# AWS API Keys for terraform.tfvars file
+# RedHatGov Acct
+aws_access_key: ""
+aws_secret_key: ""
+domain_name: "govhub.io"
+zone_id: ""
+region: "us-east-1"
+
+#####################################################
+# aws.infra.terraform |  Dir for tfstatefiles
+#####################################################
+terraform_working_dir: "{{ lookup('env','PWD') }}/.terraform"
+ssh_keyname: "id_rsa"
+ose_nodes: "2"
+master_ami_type: "m4.xlarge"
+node_ami_type: "m4.large"
+#####################################################
+# RHEL Subscription Info:
+#####################################################
+username: ""
+password: ""
+pool_id: ""
+
+#####################################################
+# AWS S3 Storage Vars
+#####################################################
+# aws_access_key_s3: ""
+# aws_secret_key_s3: ""
+# aws_region: "us-east-1"
+
+#####################################################
+# Key for Ansible to configure nodes
+#####################################################
+ansible_ssh_private_key_file: "{{ terraform_working_dir }}/id_rsa"
+
+
+
+
+
+
+
+
+

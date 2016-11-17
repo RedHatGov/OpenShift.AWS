@@ -1,0 +1,4 @@
+# file: roles/aws.atomic.install/tasks/main.yml
+---
+
+- include: atomic-installer.yml
