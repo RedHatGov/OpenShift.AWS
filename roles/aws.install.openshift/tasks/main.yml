@@ -1,0 +1,6 @@
+# file: roles/aws.install.openshift/tasks/main.yml
+---
+
+- include: rhel-subscription.yml
+- include: prep-nodes.yml
+- include: atomic-installer.yml

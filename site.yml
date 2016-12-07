@@ -4,14 +4,14 @@
   hosts: local_target
   vars:
   roles:
-  - { role: aws.terraform, tags: ["terraform"] }
+  - { role: aws.infra.terraform, tags: ["terraform"] }
 
 
 - name: Install & Configure nodes default settings and packages
   hosts: nodes
   become: yes
   roles:
-  - { role: aws.prep.nodes, tags: ["rhel"] }
+  - { role: aws.install.openshift, tags: ["rhel"] }
 
 
 - name: Install OpenShift with Atomic Installer
@@ -19,5 +19,5 @@
   hosts: masters
   tasks: []
   roles:
-  - { role: aws.atomic.install, tags: ["atomic"] }
+  - { role: aws.install.openshift, tags: ["openshift"] }
 

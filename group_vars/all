@@ -1,5 +1,4 @@
-# file: group_vars/atlanta
-#
+# file: group_vars/all
 
 #####################################################
 # aws.infra.terraform 
@@ -8,7 +7,7 @@
 # RedHatGov Acct
 aws_access_key: ""
 aws_secret_key: ""
-domain_name: "govhub.io"
+domain_name: ""
 zone_id: ""
 region: "us-east-1"
 
@@ -17,22 +16,16 @@ region: "us-east-1"
 #####################################################
 terraform_working_dir: "{{ lookup('env','PWD') }}/.terraform"
 ssh_keyname: "id_rsa"
-ose_nodes: "2"
+ose_nodes: "4"
 master_ami_type: "m4.xlarge"
-node_ami_type: "m4.large"
+node_ami_type: "m4.xlarge"
+
 #####################################################
 # RHEL Subscription Info:
 #####################################################
 username: ""
 password: ""
 pool_id: ""
-
-#####################################################
-# AWS S3 Storage Vars
-#####################################################
-# aws_access_key_s3: ""
-# aws_secret_key_s3: ""
-# aws_region: "us-east-1"
 
 #####################################################
 # Key for Ansible to configure nodes

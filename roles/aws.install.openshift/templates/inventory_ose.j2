@@ -1,0 +1,34 @@
+[OSEv3:children]
+masters
+nodes
+
+
+[OSEv3:vars]
+ansible_ssh_user=ec2-user
+ansible_become=true
+deployment_type=openshift-enterprise
+openshift_install_examples=true
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+openshift_master_default_subdomain=apps.ose.{{ domain_name }}
+
+
+[masters]
+{% for host in inventory_ose_nodes %}
+{% if (hostvars[host]['inventory_hostname'] | match("master") ) %}
+{{ hostvars[host]['inventory_hostname'] }}  openshift_public_ip={{ hostvars[host]['ansible_ec2_public_ipv4'] }} openshift_ip={{ hostvars[host]['ansible_ec2_local_ipv4'] }} openshift_public_hostname={{ hostvars[host]['ansible_ec2_public_hostname'] }} openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true ansible_connection=local ansible_become=yes
+{% endif %}
+{% endfor %}
+
+[nodes]
+{% for host in inventory_ose_nodes %}
+{% if (hostvars[host]['inventory_hostname'] | match("master") ) %}
+{{ hostvars[host]['inventory_hostname'] }}  openshift_public_ip={{ hostvars[host]['ansible_ec2_public_ipv4'] }} openshift_ip={{ hostvars[host]['ansible_ec2_local_ipv4'] }} openshift_public_hostname={{ hostvars[host]['ansible_ec2_public_hostname'] }} openshift_node_labels="{'region': 'infra', 'zone': 'default'}" openshift_schedulable=true ansible_connection=local ansible_become=yes
+{% endif %}
+{% endfor %}
+
+
+{% for host in inventory_ose_nodes %}
+{% if (hostvars[host]['inventory_hostname'] | match("node")) %}
+{{ hostvars[host]['inventory_hostname'] }}  openshift_public_ip={{ hostvars[host]['ansible_ec2_public_ipv4'] }} openshift_ip={{ hostvars[host]['ansible_ec2_local_ipv4'] }} openshift_public_hostname={{ hostvars[host]['ansible_ec2_public_hostname'] }} 
+{% endif %}
+{% endfor %}
